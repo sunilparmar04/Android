@@ -11,7 +11,7 @@ This is the Main database Handler class.
 
 
 ### Add data in SQLite Table
- On click of button set value of friend.
+ On the button click,set  value of friend.
 ```
  Friend friendinfo = new Friend();
             friendinfo.name = name;

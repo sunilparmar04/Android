@@ -81,3 +81,9 @@ if(status){
     }
 
 ```
+#### Select ALl datafrom SQLite Table
+
+Select query use to get the data from table.
+
+
+

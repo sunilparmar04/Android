@@ -1,7 +1,7 @@
 # SQLiteDemo
 This is the simplest example of SQLite for All CURD operations.
 
-<a href="https://github.com/github/linguist#syntax-highlighting">FriendDB </a> class is the Mian database Handler class.
+<h1>FriendDB</h1> class is the Mian database Handler class.
 
 
 

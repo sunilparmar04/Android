@@ -28,7 +28,7 @@ if(rowInserted!=-1){
 //getting error
 }
 
-// following methods define in FriendDB Class for add values in SQLite
+// following method define in FriendDB Class to add values in SQLite
 
   public long addFriend(Friend friend) {
         SQLiteDatabase db = mDbHelper.getWritableDatabase();
@@ -54,5 +54,30 @@ Friend friendinfo = new Friend();
             friendinfo.id = friend_id;
 
 // here we need ID to update table, Becuase i am updating values using ID
+//call Update method by following way:
+
+boolean status = FriendDB.getInstance(MainActivity.this).updateFriendDetails(friendinfo);
+
+if(status){
+//data updated successfully
+}{
+//getting error
+}
+
+// following method define in FriendDB Class to Update values in SQLite
+
+  public boolean updateFriendDetails(Friend friend) {
+        SQLiteDatabase db = mDbHelper.getWritableDatabase();
+        ContentValues values = new ContentValues();
+        values.put(FeedEntry.COLUMN_NAME_NAME, friend.name);
+        values.put(FeedEntry.COLUMN_NAME_EMAIL, friend.email);
+        values.put(FeedEntry.COLUMN_NAME_MOBILE_NO, friend.mobile);
+
+        int i = db.update(FeedEntry.TABLE_NAME, values, FeedEntry.COLUMN_NAME_ID + " = ? ", new String[]{friend.id});
+        if (i == 0) {
+            return false;
+        }
+        return true;
+    }
 
 ```

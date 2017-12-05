@@ -81,9 +81,50 @@ if(status){
     }
 
 ```
-#### Select ALl datafrom SQLite Table
+#### Select All data from SQLite Table
 
 Select query use to get the data from table.
 
+```
+//call following method from FriendDB class to get the friend list
+
+   public ListFriend getListFriend() {
+        ListFriend listFriend = new ListFriend();
+        SQLiteDatabase db = mDbHelper.getReadableDatabase();
+        // Define a projection that specifies which columns from the database
+        // you will actually use after this query.
+        try {
+            Cursor cursor = db.rawQuery("select * from " + FeedEntry.TABLE_NAME, null);
+            while (cursor.moveToNext()) {
+                Friend friend = new Friend();
+
+                friend.id = cursor.getString(cursor.getColumnIndex(FeedEntry.COLUMN_NAME_ID));
+                friend.name = cursor.getString(cursor.getColumnIndex(FeedEntry.COLUMN_NAME_NAME));
+                friend.email = cursor.getString(cursor.getColumnIndex(FeedEntry.COLUMN_NAME_EMAIL));
+                friend.mobile = cursor.getString(cursor.getColumnIndex(FeedEntry.COLUMN_NAME_MOBILE_NO));
+                listFriend.getListFriend().add(friend);
+            }
+            cursor.close();
+        } catch (Exception e) {
+            return new ListFriend();
+        }
+        return listFriend;
+    }
+
+
+```
+
+#### Delete or drop(Table) from SQLite Table
+
+```
+//call following method from FriendDB class to delete or drop table.
+
+  public void dropDB() {
+        SQLiteDatabase db = mDbHelper.getWritableDatabase();
+        db.execSQL(SQL_DELETE_ENTRIES);
+        db.execSQL(SQL_CREATE_ENTRIES);
+    }
+
+```
 
 
